@@ -1,0 +1,27 @@
+repeat task.wait() until game:IsLoaded()
+
+local TablePlace = {7449423635, 2753915549, 4442272183}
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+    Title = "Welcome to Roblox", 
+    Text = "Get ready for the adventure!", 
+    Icon = "rbxassetid://17862401940", 
+    Duration = 10
+})
+
+if table.find(TablePlace, game.PlaceId) then
+    getgenv().Game = "BloxFruit"
+    
+    local success, errorMessage = pcall(function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/UserDevEthical/Loadstring/main/BF-New.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/realredz/BloxFruits/refs/heads/main/Source.lua"))()
+    end)
+
+    if not success then
+        warn("Error loading external script: " .. errorMessage)
+        game.Players.LocalPlayer:Kick("Failed to load script.")
+    end
+else
+    game.Players.LocalPlayer:Kick("This game is not supported. Please play a supported game.")
+end
+
